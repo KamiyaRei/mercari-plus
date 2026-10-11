@@ -1,11 +1,13 @@
 // ==UserScript==
 // @name         Mercari Plus
 // @namespace    rei-mercari
-// @version      1.0
+// @version      1.1
 // @description  Mercari Plus: an unofficial browsing tool for Mercari Japan that hides auction listings, with a compact on-page toggle button and counter
 // @author       KamiyaRei
 // @match        https://jp.mercari.com/*
 // @grant        none
+// @updateURL    https://raw.githubusercontent.com/KamiyaRei/mercari-plus/main/mercari-plus.user.js
+// @downloadURL  https://raw.githubusercontent.com/KamiyaRei/mercari-plus/main/mercari-plus.user.js
 // @run-at       document-idle
 // ==/UserScript==
 

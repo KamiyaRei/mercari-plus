@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1 — 2026-10-11
+
+- Add explicit GitHub `@updateURL` and `@downloadURL` metadata for Tampermonkey updates.
+- Document update behavior and migration from manually installed version 1.0.
+- Keep auction filtering and all runtime behavior unchanged.
+
 ## 1.0 — 2026-10-11
 
 Initial repository import of the existing working userscript. No functional changes.

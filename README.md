@@ -8,9 +8,9 @@
 
 Mercari Plus is a browsing enhancement project for buyers on [Mercari Japan](https://jp.mercari.com/). It starts with a simple auction filter and is intended to grow into a broader collection of useful browsing features.
 
-**Current version: 1.0.** Only auction hiding is implemented today. Features listed in the roadmap are planned, not available yet.
+**Current version: 1.1.** Only auction hiding is implemented today. Features listed in the roadmap are planned, not available yet.
 
-### Features in 1.0
+### Features in 1.1
 
 - Hide auction listings while keeping fixed-price listings visible.
 - Show or hide auctions using a floating gavel button.
@@ -25,6 +25,12 @@ Mercari Plus is a browsing enhancement project for buyers on [Mercari Japan](htt
 3. If the installation screen does not open, create a new script in Tampermonkey, replace the editor contents with the full contents of `mercari-plus.user.js`, and save.
 4. Open or reload [Mercari Japan](https://jp.mercari.com/).
 
+### Updates
+
+Version 1.1 includes explicit GitHub update and download URLs. Tampermonkey can check for newer versions and install them according to your update settings.
+
+If you pasted version 1.0 manually and it has no update source, install the current script from the link above once to enable future update checks.
+
 ### Usage
 
 Auction hiding is enabled by default. Click the floating gavel button near the bottom-right corner to toggle it.
@@ -37,7 +43,7 @@ The button tooltip shows the current state and count. The interface is currently
 
 ### Scope and limitations
 
-Mercari Plus only changes the page display in your browser. Version 1.0 makes no additional requests to Mercari and provides no crawling, automatic purchases, bidding, or messaging. It stores only the toggle preference in the site's local storage.
+Mercari Plus only changes the page display in your browser. Version 1.1 makes no additional requests to Mercari and provides no crawling, automatic purchases, bidding, or messaging. It stores only the toggle preference in the site's local storage.
 
 Auction detection currently relies on listing text matching `現在` followed by a yen symbol and on Mercari's existing card structure. Changes to the site may require updates. Filtering applies to matching listing cards; it is not an item-page purchase control.
 
@@ -85,9 +91,9 @@ Original project code is licensed under [MIT](LICENSE). The inline Material Symb
 
 Mercari Plusは、[メルカリ](https://jp.mercari.com/)で商品を探す購入者向けの閲覧支援プロジェクトです。まずはオークション商品の非表示機能から始め、今後は商品探しに役立つ機能を追加していく予定です。
 
-**現在のバージョン：1.0。** 現在実装されているのはオークション商品の非表示機能のみです。ロードマップの機能は今後の予定であり、まだ利用できません。
+**現在のバージョン：1.1。** 現在実装されているのはオークション商品の非表示機能のみです。ロードマップの機能は今後の予定であり、まだ利用できません。
 
-### バージョン1.0の機能
+### バージョン1.1の機能
 
 - オークション商品を非表示にし、通常の定額商品を表示。
 - 画面上のハンマーボタンで表示・非表示を切り替え。
@@ -102,6 +108,12 @@ Mercari Plusは、[メルカリ](https://jp.mercari.com/)で商品を探す購�
 3. インストール画面が開かない場合は、Tampermonkeyで新しいスクリプトを作成し、エディターの内容を `mercari-plus.user.js` の全文に置き換えて保存します。
 4. [メルカリ](https://jp.mercari.com/)を開くか、ページを再読み込みします。
 
+### 更新
+
+バージョン1.1では、GitHubの更新確認URLとダウンロードURLを明示しています。Tampermonkeyの更新設定に従って、新しいバージョンの確認・更新ができます。
+
+バージョン1.0を手動で貼り付けて使用していて、更新元が設定されていない場合は、上記のリンクから最新版を一度インストールしてください。
+
 ### 使い方
 
 初期設定ではオークション商品を非表示にします。画面右下付近のハンマーボタンをクリックすると切り替えられます。
@@ -114,7 +126,7 @@ Mercari Plusは、[メルカリ](https://jp.mercari.com/)で商品を探す購�
 
 ### 動作範囲と制限
 
-Mercari Plusは、ブラウザー内のページ表示だけを変更します。バージョン1.0ではメルカリへの追加リクエストを行わず、巡回収集、自動購入、自動入札、自動メッセージ送信の機能もありません。サイトのローカルストレージには、表示切り替えの設定のみを保存します。
+Mercari Plusは、ブラウザー内のページ表示だけを変更します。バージョン1.1ではメルカリへの追加リクエストを行わず、巡回収集、自動購入、自動入札、自動メッセージ送信の機能もありません。サイトのローカルストレージには、表示切り替えの設定のみを保存します。
 
 オークションの判定には、商品カード内の「現在」に続く円記号と、現在のカード構造を使用しています。サイトの変更により、スクリプトの更新が必要になる場合があります。対象は商品一覧のカードであり、商品詳細ページの購入操作を制限するものではありません。
 
