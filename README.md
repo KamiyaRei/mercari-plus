@@ -6,7 +6,7 @@
 
 ## English
 
-Mercari Plus is a browsing enhancement project for buyers on [Mercari Japan](https://jp.mercari.com/), developed by **KamiyaRei**. It starts with a simple auction filter and is intended to grow into a broader collection of useful browsing features.
+Mercari Plus is a browsing enhancement project for buyers on [Mercari Japan](https://jp.mercari.com/). It starts with a simple auction filter and is intended to grow into a broader collection of useful browsing features.
 
 **Current version: 1.0.** Only auction hiding is implemented today. Features listed in the roadmap are planned, not available yet.
 
@@ -85,7 +85,7 @@ Original project code is licensed under [MIT](LICENSE). The inline Material Symb
 
 **メルカリをより快適で使いやすくする非公式ユーザースクリプト。**
 
-Mercari Plusは、**KamiyaRei**が開発する、[メルカリ](https://jp.mercari.com/)で商品を探す購入者向けの閲覧支援プロジェクトです。まずはオークション商品の非表示機能から始め、今後は商品探しに役立つ機能を追加していく予定です。
+Mercari Plusは、[メルカリ](https://jp.mercari.com/)で商品を探す購入者向けの閲覧支援プロジェクトです。まずはオークション商品の非表示機能から始め、今後は商品探しに役立つ機能を追加していく予定です。
 
 **現在のバージョン：1.0。** 現在実装されているのはオークション商品の非表示機能のみです。ロードマップの機能は今後の予定であり、まだ利用できません。
 
