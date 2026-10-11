@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Mercari Plus
 // @namespace    rei-mercari
-// @version      1.2
+// @version      1.3
 // @description  Mercari Plus: an unofficial browsing tool for Mercari Japan that hides auction listings, with a compact on-page toggle button and counter
 // @author       KamiyaRei
 // @match        https://jp.mercari.com/*
@@ -18,6 +18,7 @@
     const STORAGE_KEY = 'mha_hide_auctions';
     const TILE_SELECTOR = 'a[data-testid="item-tile"], a[data-testid="thumbnail-link"]';
     const AUCTION_RE = /現在\s*[¥￥]/;
+    const ITEM_ID_RE = /\/item\/(m\d+)(?=[/?#]|$)/;
     const HIDDEN_ATTR = 'data-mha-auction';
     const ROOT_CLASS = 'mha-on';
 
@@ -214,33 +215,65 @@
 
     // ---------- Tile processing ----------
 
-    function processTile(tile) {
-        const text = (tile.textContent || '').replace(/\s+/g, ' ').trim();
+    // Page-lifetime evidence only. Missing auction text is not negative evidence.
+    const confirmedAuctions = new Set();
+    const itemIndex = new Map();
+    const tileStates = new Map();
+    const dirtyCards = new Set();
 
-        // Not rendered yet, check again on the next mutation
-        if (!text) return;
+    function forgetTile(tile, state) {
+        if (state.card) dirtyCards.add(state.card);
+        if (state.itemId) {
+            const tiles = itemIndex.get(state.itemId);
+            tiles.delete(tile);
+            if (!tiles.size) itemIndex.delete(state.itemId);
+        }
+        tileStates.delete(tile);
+    }
+
+    function processTile(tile) {
+        const old = tileStates.get(tile);
+        if (old) forgetTile(tile, old);
+        if (!tile.isConnected || !tile.matches(TILE_SELECTOR)) return;
 
         const card = tile.closest('li');
-        if (!card) return;
-
-        // Skip only if neither the content nor the card changed
-        if (tile._mhaText === text && tile._mhaCard === card) return;
-
-        tile._mhaText = text;
-        tile._mhaCard = card;
-
-        const isAuction = AUCTION_RE.test(text);
-
-        if (isAuction) {
-            if (card.getAttribute(HIDDEN_ATTR) !== '1') {
-                card.setAttribute(HIDDEN_ATTR, '1');
-                log('Marked auction:', tile.href, text);
-            }
-        } else if (card.hasAttribute(HIDDEN_ATTR)) {
-            // DOM reuse: this card now holds a fixed-price item
-            card.removeAttribute(HIDDEN_ATTR);
-            log('Unmarked (now fixed price):', tile.href);
+        const itemId = (tile.getAttribute('href') || '').match(ITEM_ID_RE)?.[1] || null;
+        const positive = AUCTION_RE.test(tile.textContent || '');
+        tileStates.set(tile, { card, itemId, positive });
+        if (card) dirtyCards.add(card);
+        if (itemId) {
+            if (!itemIndex.has(itemId)) itemIndex.set(itemId, new Set());
+            itemIndex.get(itemId).add(tile);
+            if (positive) confirmedAuctions.add(itemId);
         }
+    }
+
+    function reconcileCards() {
+        // Release detached nodes and revisit moved cards, even on removal-only batches.
+        for (const [tile, state] of tileStates) {
+            if (!tile.isConnected || !tile.matches(TILE_SELECTOR)) forgetTile(tile, state);
+            else if (tile.closest('li') !== state.card) processTile(tile);
+        }
+        const auctions = new Set();
+        for (const tiles of itemIndex.values()) {
+            for (const tile of tiles) {
+                const state = tileStates.get(tile);
+                if (state.card) {
+                    dirtyCards.add(state.card);
+                    if (confirmedAuctions.has(state.itemId)) auctions.add(state.card);
+                }
+            }
+        }
+        // Retain direct text detection for cards without a usable item ID.
+        for (const state of tileStates.values()) {
+            if (!state.itemId && state.card && state.positive) auctions.add(state.card);
+        }
+        for (const card of dirtyCards) {
+            if (auctions.has(card)) {
+                if (card.getAttribute(HIDDEN_ATTR) !== '1') card.setAttribute(HIDDEN_ATTR, '1');
+            } else if (card.hasAttribute(HIDDEN_ATTR)) card.removeAttribute(HIDDEN_ATTR);
+        }
+        dirtyCards.clear();
     }
 
     function scan(root) {
@@ -275,6 +308,7 @@
             pending.clear();
         }
 
+        reconcileCards();
         updateButton();
     }
 
@@ -295,11 +329,13 @@
     }
 
     const observer = new MutationObserver(mutations => {
+        let removed = false;
         for (const m of mutations) {
             // Ignore our own button
             if (button && button.contains(m.target)) continue;
 
             if (m.type === 'childList') {
+                if (m.removedNodes.length) removed = true;
                 for (const node of m.addedNodes) {
                     if (node.nodeType === 1 && node !== button) pending.add(node);
                 }
@@ -307,11 +343,12 @@
             } else if (m.type === 'characterData') {
                 enqueueFromNode(m.target);
             } else if (m.type === 'attributes') {
+                if (tileStates.has(m.target)) pending.add(m.target);
                 enqueueFromNode(m.target);
             }
         }
 
-        if (pending.size) schedule();
+        if (pending.size || removed) schedule();
     });
 
     // ---------- SPA navigation ----------
@@ -344,7 +381,7 @@
         subtree: true,
         characterData: true,
         attributes: true,
-        attributeFilter: ['href']
+        attributeFilter: ['href', 'data-testid']
     });
 
     hookHistory();
