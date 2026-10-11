@@ -66,9 +66,7 @@ Title, promotion, layout, and seller features require verification of Mercari's 
 | `mercari-plus.user.js` | Complete, ready-to-install userscript |
 | `README.md` | English and Japanese guide |
 | `CHANGELOG.md` | Version history |
-| `docs/PROJECT_INSTRUCTIONS.md` | Development decisions, constraints, and roadmap |
 | `LICENSE` | MIT license for original project code |
-| `NOTICE` | Third-party icon attribution |
 | `LICENSES/Apache-2.0.txt` | License for the Material Symbols icon |
 
 No build step or external runtime dependency is required. For development, preserve the working filter, verify new selectors on the live site, and keep code comments and interface text in English.
@@ -79,7 +77,7 @@ Report problems or suggestions in [Issues](https://github.com/KamiyaRei/mercari-
 
 ### License
 
-Original project code is licensed under [MIT](LICENSE). The inline Material Symbols gavel icon is licensed under [Apache 2.0](LICENSES/Apache-2.0.txt); see [NOTICE](NOTICE).
+Original project code is licensed under [MIT](LICENSE). The inline Material Symbols Outlined "gavel" icon comes from [Google Material Design Icons](https://github.com/google/material-design-icons) and is licensed under [Apache 2.0](LICENSES/Apache-2.0.txt).
 
 ## 日本語
 
@@ -140,7 +138,7 @@ Mercari Plusはメルカリの公式製品ではなく、メルカリとの提�
 
 ### ファイル構成と開発
 
-スクリプト本体は `mercari-plus.user.js` です。変更履歴は [CHANGELOG.md](CHANGELOG.md)、開発方針と技術上の決定事項は [docs/PROJECT_INSTRUCTIONS.md](docs/PROJECT_INSTRUCTIONS.md) にまとめています。
+スクリプト本体は `mercari-plus.user.js` です。変更履歴は [CHANGELOG.md](CHANGELOG.md)、本プロジェクトのライセンスは [LICENSE](LICENSE)、アイコンのライセンスは [LICENSES/Apache-2.0.txt](LICENSES/Apache-2.0.txt) にまとめています。
 
 ビルド作業や外部の実行時依存関係は不要です。既存のフィルター動作を維持し、新しいセレクターは実際のサイトで確認してから使用します。コード内のコメントと操作画面の文言は英語に統一します。
 
@@ -150,4 +148,4 @@ Mercari Plusはメルカリの公式製品ではなく、メルカリとの提�
 
 ### ライセンス
 
-本プロジェクトの独自コードは[MITライセンス](LICENSE)です。埋め込みのMaterial Symbolsハンマーアイコンは[Apache 2.0](LICENSES/Apache-2.0.txt)に従います。詳細は[NOTICE](NOTICE)をご覧ください。
+本プロジェクトの独自コードは[MITライセンス](LICENSE)です。埋め込みのMaterial Symbols Outlined「gavel」アイコンは[Google Material Design Icons](https://github.com/google/material-design-icons)のもので、[Apache 2.0](LICENSES/Apache-2.0.txt)に従います。
