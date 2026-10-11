@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.2 — 2026-10-11
+
+- Fix auction hiding in search results by supporting `thumbnail-link` cards alongside `item-tile` cards.
+- Preserve existing auction detection, toggle, counter, and dynamic update behavior.
+
 ## 1.1 — 2026-10-11
 
 - Add explicit GitHub `@updateURL` and `@downloadURL` metadata for Tampermonkey updates.

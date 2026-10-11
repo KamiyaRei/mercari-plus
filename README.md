@@ -8,9 +8,9 @@
 
 Mercari Plus is a browsing enhancement project for buyers on [Mercari Japan](https://jp.mercari.com/). It starts with a simple auction filter and is intended to grow into a broader collection of useful browsing features.
 
-**Current version: 1.1.** Only auction hiding is implemented today. Features listed in the roadmap are planned, not available yet.
+**Current version: 1.2.** Only auction hiding is implemented today. Features listed in the roadmap are planned, not available yet.
 
-### Features in 1.1
+### Features in 1.2
 
 - Hide auction listings while keeping fixed-price listings visible.
 - Show or hide auctions using a floating gavel button.
@@ -43,7 +43,7 @@ The button tooltip shows the current state and count. The interface is currently
 
 ### Scope and limitations
 
-Mercari Plus only changes the page display in your browser. Version 1.1 makes no additional requests to Mercari and provides no crawling, automatic purchases, bidding, or messaging. It stores only the toggle preference in the site's local storage.
+Mercari Plus only changes the page display in your browser. Version 1.2 makes no additional requests to Mercari and provides no crawling, automatic purchases, bidding, or messaging. It stores only the toggle preference in the site's local storage.
 
 Auction detection currently relies on listing text matching `現在` followed by a yen symbol and on Mercari's existing card structure. Changes to the site may require updates. Filtering applies to matching listing cards; it is not an item-page purchase control.
 
@@ -91,9 +91,9 @@ Original project code is licensed under [MIT](LICENSE). The inline Material Symb
 
 Mercari Plusは、[メルカリ](https://jp.mercari.com/)で商品を探す購入者向けの閲覧支援プロジェクトです。まずはオークション商品の非表示機能から始め、今後は商品探しに役立つ機能を追加していく予定です。
 
-**現在のバージョン：1.1。** 現在実装されているのはオークション商品の非表示機能のみです。ロードマップの機能は今後の予定であり、まだ利用できません。
+**現在のバージョン：1.2。** 現在実装されているのはオークション商品の非表示機能のみです。ロードマップの機能は今後の予定であり、まだ利用できません。
 
-### バージョン1.1の機能
+### バージョン1.2の機能
 
 - オークション商品を非表示にし、通常の定額商品を表示。
 - 画面上のハンマーボタンで表示・非表示を切り替え。
@@ -126,7 +126,7 @@ Mercari Plusは、[メルカリ](https://jp.mercari.com/)で商品を探す購�
 
 ### 動作範囲と制限
 
-Mercari Plusは、ブラウザー内のページ表示だけを変更します。バージョン1.1ではメルカリへの追加リクエストを行わず、巡回収集、自動購入、自動入札、自動メッセージ送信の機能もありません。サイトのローカルストレージには、表示切り替えの設定のみを保存します。
+Mercari Plusは、ブラウザー内のページ表示だけを変更します。バージョン1.2ではメルカリへの追加リクエストを行わず、巡回収集、自動購入、自動入札、自動メッセージ送信の機能もありません。サイトのローカルストレージには、表示切り替えの設定のみを保存します。
 
 オークションの判定には、商品カード内の「現在」に続く円記号と、現在のカード構造を使用しています。サイトの変更により、スクリプトの更新が必要になる場合があります。対象は商品一覧のカードであり、商品詳細ページの購入操作を制限するものではありません。
 

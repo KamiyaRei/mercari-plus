@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Mercari Plus
 // @namespace    rei-mercari
-// @version      1.1
+// @version      1.2
 // @description  Mercari Plus: an unofficial browsing tool for Mercari Japan that hides auction listings, with a compact on-page toggle button and counter
 // @author       KamiyaRei
 // @match        https://jp.mercari.com/*
@@ -16,7 +16,7 @@
 
     const DEBUG = false;
     const STORAGE_KEY = 'mha_hide_auctions';
-    const TILE_SELECTOR = 'a[data-testid="item-tile"]';
+    const TILE_SELECTOR = 'a[data-testid="item-tile"], a[data-testid="thumbnail-link"]';
     const AUCTION_RE = /現在\s*[¥￥]/;
     const HIDDEN_ATTR = 'data-mha-auction';
     const ROOT_CLASS = 'mha-on';
